@@ -7,7 +7,7 @@ import 'package:mywiki/src/service/api/api_constants.dart';
 class ApiService {
   Future<SearchResultDto?> getSearchResult(String searchText) async {
     SearchResultDto? searchResult;
-    String url = ApiConstant.baseUrl + searchText;
+    String url = ApiConstant.baseSearchUrl + searchText;
     Uri searchUri = Uri.parse(url);
     dynamic result = await http.get(searchUri);
     if (result.body != null)
