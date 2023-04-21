@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mywiki/src/feature/search/bloc/search_bloc.dart';
 import 'package:mywiki/src/feature/search/bloc/search_event.dart';
 import 'package:mywiki/src/feature/search/bloc/search_state.dart';
+import 'package:mywiki/src/feature/search/model/search_result.dart';
+import 'package:html/parser.dart' as htmlParser;
 
 class SearchPage extends StatelessWidget {
   SearchPage({super.key});
@@ -10,6 +12,7 @@ class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: BlocBuilder<SearchBloc, SearchState>(
           bloc: _searchBloc,
           builder: (context, state) {
@@ -24,7 +27,18 @@ class SearchPage extends StatelessWidget {
             } else if (state is LoadingSearchResult) {
               return CircularProgressIndicator();
             } else if (state is LoadedSearchResult) {
-              return Text('WIP');
+              return ListView.builder(
+                itemBuilder: (context, index) {
+                  SearchResultModel searchResultModel = state.results[index];
+                  return ListTile(
+                    title: Text(searchResultModel?.title ?? ''),
+                    subtitle: Text(htmlParser
+                        .parse(searchResultModel?.snippet ?? '')
+                        .toString()),
+                  );
+                },
+                itemCount: state.results.length,
+              );
             } else {
               return Text('something went wrong');
             }

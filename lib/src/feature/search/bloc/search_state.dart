@@ -9,6 +9,8 @@ class LoadingCachedResult extends SearchState {}
 class LoadingSearchResult extends SearchState {}
 
 class LoadedSearchResult extends SearchState {
-  List<SearchResult> results;
+  List<SearchResultModel> results;
   LoadedSearchResult(this.results);
 }
+
+class ErrorLoadingSearchResult extends SearchState {}
