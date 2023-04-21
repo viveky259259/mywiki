@@ -16,6 +16,10 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   SearchRepository _searchRepository = SearchRepository(ApiService());
 
   void onSearchUserInputEvent(SearchUserInputEvent event, emit) async {
+    if (event.searchInput.isEmpty) {
+      emit(InitialState());
+      return;
+    }
     emit(LoadingSearchResult());
 
     SearchResultDto? searchResponse =
