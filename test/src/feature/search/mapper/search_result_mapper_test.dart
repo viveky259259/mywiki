@@ -17,7 +17,5 @@ void main() {
           SearchResultMapper.getThumbnailModelFromThumbnailDto(testThumbnail),
           expectedThumbnailModel);
     });
-
-    test('', () {});
   });
 }

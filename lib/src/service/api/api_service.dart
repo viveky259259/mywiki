@@ -3,8 +3,10 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:mywiki/src/feature/search/model/search_result_dto.dart';
 import 'package:mywiki/src/service/api/api_constants.dart';
+import 'package:mywiki/src/service/api/api_service_impl.dart';
 
-class ApiService {
+class ApiServiceImpl implements ApiService {
+  @override
   Future<SearchResultDto?> getSearchResult(String searchText) async {
     SearchResultDto? searchResult;
     String url =

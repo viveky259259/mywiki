@@ -5,7 +5,7 @@ import 'package:mywiki/src/feature/search/model/search_result_dto.dart';
 class SearchResultMapper {
   static List<SearchResultModel>? getSearchResultModelsFromSearchResultDto(
       SearchResultDto dto) {
-    List<SearchResultModel>? searchResultModels = dto.query?.searchResult
+    List<SearchResultModel>? searchResultModels = dto.query?.searchResults
         ?.map((each) => SearchResultModel(
             pageId: each.pageid,
             title: each.title,

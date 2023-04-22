@@ -1,4 +1,6 @@
-class SearchResultDto {
+import 'package:equatable/equatable.dart';
+
+class SearchResultDto extends Equatable {
   bool? batchcomplete;
   ContinuePage? continuePage;
   Query? query;
@@ -24,9 +26,12 @@ class SearchResultDto {
     }
     return data;
   }
+
+  @override
+  List<Object?> get props => [batchcomplete, continuePage, query];
 }
 
-class ContinuePage {
+class ContinuePage extends Equatable {
   int? sroffset;
   String? continueString;
 
@@ -43,22 +48,25 @@ class ContinuePage {
     data['continue'] = continueString;
     return data;
   }
+
+  @override
+  List<Object?> get props => [sroffset, continueString];
 }
 
-class Query {
+class Query extends Equatable {
   Searchinfo? searchinfo;
-  List<SearchResult>? searchResult;
+  List<SearchResult>? searchResults;
 
-  Query({this.searchinfo, this.searchResult});
+  Query({this.searchinfo, this.searchResults});
 
   Query.fromJson(Map<String, dynamic> json) {
     searchinfo = json['searchinfo'] != null
         ? Searchinfo.fromJson(json['searchinfo'])
         : null;
     if (json['pages'] != null) {
-      searchResult = <SearchResult>[];
+      searchResults = <SearchResult>[];
       json['pages'].forEach((v) {
-        searchResult!.add(SearchResult.fromJson(v));
+        searchResults!.add(SearchResult.fromJson(v));
       });
     }
   }
@@ -68,14 +76,17 @@ class Query {
     if (searchinfo != null) {
       data['searchinfo'] = searchinfo!.toJson();
     }
-    if (searchResult != null) {
-      data['searchResult'] = searchResult!.map((v) => v.toJson()).toList();
+    if (searchResults != null) {
+      data['searchResult'] = searchResults!.map((v) => v.toJson()).toList();
     }
     return data;
   }
+
+  @override
+  List<Object?> get props => [searchinfo, searchResults];
 }
 
-class Searchinfo {
+class Searchinfo extends Equatable {
   int? totalhits;
   String? suggestion;
   String? suggestionsnippet;
@@ -95,9 +106,12 @@ class Searchinfo {
     data['suggestionsnippet'] = suggestionsnippet;
     return data;
   }
+
+  @override
+  List<Object?> get props => [totalhits, suggestion, suggestionsnippet];
 }
 
-class SearchResult {
+class SearchResult extends Equatable {
   int? ns;
   String? title;
   int? pageid;
@@ -105,7 +119,13 @@ class SearchResult {
   Thumbnail? thumbnail;
   Terms? terms;
 
-  SearchResult({this.ns, this.title, this.pageid, this.timestamp});
+  SearchResult(
+      {this.ns,
+      this.title,
+      this.pageid,
+      this.timestamp,
+      this.thumbnail,
+      this.terms});
 
   SearchResult.fromJson(Map<String, dynamic> json) {
     ns = json['ns'];
@@ -126,9 +146,12 @@ class SearchResult {
     data['timestamp'] = timestamp;
     return data;
   }
+
+  @override
+  List<Object?> get props => [ns, title, pageid, timestamp, thumbnail, terms];
 }
 
-class Thumbnail {
+class Thumbnail extends Equatable {
   String? source;
   int? width;
   int? height;
@@ -148,9 +171,12 @@ class Thumbnail {
     data['height'] = height;
     return data;
   }
+
+  @override
+  List<Object?> get props => [source, width, height];
 }
 
-class Terms {
+class Terms extends Equatable {
   List<String>? description;
 
   Terms({this.description});
@@ -164,4 +190,7 @@ class Terms {
     data['description'] = description;
     return data;
   }
+
+  @override
+  List<Object?> get props => [description];
 }
