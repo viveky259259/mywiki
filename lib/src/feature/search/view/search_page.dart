@@ -38,10 +38,14 @@ class SearchPage extends StatelessWidget {
                   builder: (context, state) {
                     if (state is InitialState) {
                       return Text("Search above");
-                    } else if (state is LoadingCachedResult) {
-                      return CircularProgressIndicator();
+                    } else if (state is LoadingCachedResult) {  
+                      return CircularProgressIndicator(
+                        color: Colors.red,
+                      );
                     } else if (state is LoadingSearchResult) {
-                      return CircularProgressIndicator();
+                      return CircularProgressIndicator(
+                        color: Colors.red,
+                      );
                     } else if (state is LoadedSearchResult) {
                       return Material(
                         color: Colors.black,

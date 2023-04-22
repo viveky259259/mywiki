@@ -43,7 +43,9 @@ class _WikiPageState extends State<WikiPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
+        backgroundColor: Colors.black,
         title: Text(widget.searchResultModel.title ?? ''),
       ),
       body: Stack(
@@ -52,7 +54,10 @@ class _WikiPageState extends State<WikiPage> {
             controller: controller,
           ),
           if (loadingProgress < 100)
-            const Center(child: CircularProgressIndicator()),
+            const Center(
+                child: CircularProgressIndicator(
+              color: Colors.red,
+            )),
         ],
       ),
     );

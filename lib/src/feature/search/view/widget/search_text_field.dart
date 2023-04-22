@@ -14,9 +14,11 @@ class SearchTextField extends StatelessWidget {
         Expanded(
           child: TextField(
             controller: _searchTextController,
-            cursorColor: Colors.black,
+            cursorColor: Colors.red,
             decoration: InputDecoration(
-                hintText: 'Search here', border: InputBorder.none),
+                hintText: 'Search here',
+                hintStyle: TextStyle(color: Colors.black38),
+                border: InputBorder.none),
           ),
         ),
         const SizedBox(
