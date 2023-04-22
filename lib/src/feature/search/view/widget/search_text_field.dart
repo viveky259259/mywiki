@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:mywiki/src/common/constant/app_string.dart';
 
 class SearchTextField extends StatelessWidget {
-  SearchTextField(this.onSearch, {super.key});
-
+  const SearchTextField(this.onSearch, this.searchController, {super.key});
+  final TextEditingController searchController;
   final Function(String) onSearch;
-  final TextEditingController _searchTextController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -14,7 +14,7 @@ class SearchTextField extends StatelessWidget {
       children: [
         Expanded(
           child: TextField(
-            controller: _searchTextController,
+            controller: searchController,
             cursorColor: Colors.red,
             decoration: const InputDecoration(
                 hintText: AppString.searchHintText,
@@ -27,7 +27,7 @@ class SearchTextField extends StatelessWidget {
         ),
         GestureDetector(
             onTap: () {
-              onSearch(_searchTextController.text);
+              onSearch(searchController.text);
             },
             child: const Icon(Icons.search))
       ],

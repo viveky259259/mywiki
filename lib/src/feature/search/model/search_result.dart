@@ -1,3 +1,10 @@
+class SearchResultModels {
+  final String searchText;
+  final List<SearchResultModel> searchResults;
+
+  SearchResultModels(this.searchText, this.searchResults);
+}
+
 class SearchResultModel {
   final String? title;
   final int? pageId;

@@ -39,6 +39,10 @@ dependencies:
   http: ^0.13.5
   html: ^0.15.2
   webview_flutter: ^4.1.0
+  isar: ^3.1.0
+  isar_flutter_libs: ^3.1.0
+  path_provider: ^2.0.14
+  kiwi: ^4.1.0
 
 dev_dependencies:
   flutter_test:
@@ -50,6 +54,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  isar_generator: ^3.1.0
+  build_runner: ^2.3.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

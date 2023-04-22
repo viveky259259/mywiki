@@ -6,6 +6,11 @@ class InitialState extends SearchState {}
 
 class LoadingCachedResult extends SearchState {}
 
+class LoadedCachedResult extends SearchState {
+  List<SearchResultModels> results;
+  LoadedCachedResult(this.results);
+}
+
 class LoadingSearchResult extends SearchState {}
 
 class LoadedSearchResult extends SearchState {
@@ -14,3 +19,8 @@ class LoadedSearchResult extends SearchState {
 }
 
 class ErrorLoadingSearchResult extends SearchState {}
+
+class LoadedPreviousSearchResult extends SearchState {
+  SearchResultModels searchResults;
+  LoadedPreviousSearchResult(this.searchResults);
+}
