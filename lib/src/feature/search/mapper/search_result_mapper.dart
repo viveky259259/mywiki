@@ -7,12 +7,23 @@ class SearchResultMapper {
     List<SearchResultModel>? searchResultModels = dto.query?.searchResult
         ?.map((each) => SearchResultModel(
             pageId: each.pageid,
-            size: each.size,
-            snippet: each.snippet,
             title: each.title,
-            wordCount: each.wordcount))
+            terms: each.terms != null
+                ? getTermsModelFromTermsDto(each.terms!)
+                : null,
+            thumbnail: each.thumbnail != null
+                ? getThumbnailModelFromThumbnailDto(each.thumbnail!)
+                : null))
         .toList();
-
     return searchResultModels;
+  }
+
+  static ThumbnailModel getThumbnailModelFromThumbnailDto(Thumbnail dto) {
+    return ThumbnailModel(
+        height: dto.height, source: dto.source, width: dto.width);
+  }
+
+  static TermsModel getTermsModelFromTermsDto(Terms terms) {
+    return TermsModel(description: terms.description?.toList());
   }
 }

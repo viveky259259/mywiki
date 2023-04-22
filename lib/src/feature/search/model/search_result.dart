@@ -1,9 +1,20 @@
 class SearchResultModel {
-  String? title;
-  int? pageId;
-  int? size;
-  int? wordCount;
-  String? snippet;
-  SearchResultModel(
-      {this.title, this.pageId, this.size, this.wordCount, this.snippet});
+  final String? title;
+  final int? pageId;
+  final ThumbnailModel? thumbnail;
+  final TermsModel? terms;
+  SearchResultModel({this.title, this.pageId, this.thumbnail, this.terms});
+}
+
+class ThumbnailModel {
+  final String? source;
+  final int? width;
+  final int? height;
+  ThumbnailModel({this.source, this.height, this.width});
+}
+
+class TermsModel {
+  final List<String>? description;
+
+  TermsModel({this.description});
 }

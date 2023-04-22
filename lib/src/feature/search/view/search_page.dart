@@ -5,15 +5,18 @@ import 'package:mywiki/src/feature/search/bloc/search_event.dart';
 import 'package:mywiki/src/feature/search/bloc/search_state.dart';
 import 'package:mywiki/src/feature/search/model/search_result.dart';
 import 'package:html/parser.dart' as htmlParser;
+import 'package:mywiki/src/feature/search/view/widget/search_item_description.dart';
+import 'package:mywiki/src/feature/search/view/widget/search_list_item.dart';
 import 'package:mywiki/src/feature/search/view/widget/search_text_field.dart';
 import 'package:mywiki/src/feature/wiki_page/view/wiki_page.dart';
 import 'package:mywiki/src/service/api/api_constants.dart';
 
 class SearchPage extends StatelessWidget {
   SearchPage({super.key});
-  final SearchBloc _searchBloc = SearchBloc();
+  late SearchBloc _searchBloc;
   @override
   Widget build(BuildContext context) {
+    _searchBloc = BlocProvider.of(context);
     return Scaffold(
       appBar: AppBar(),
       body: Column(
@@ -40,12 +43,9 @@ class SearchPage extends StatelessWidget {
                         itemBuilder: (context, index) {
                           SearchResultModel searchResultModel =
                               state.results[index];
-                          return ListTile(
-                            title: Text(searchResultModel?.title ?? ''),
-                            subtitle: Text(htmlParser
-                                .parse(searchResultModel?.snippet ?? '')
-                                .toString()),
-                            onTap: () {
+                          return SearchListItem(
+                            searchResultModel,
+                            () {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (_) => WikiPage(searchResultModel)));
                             },
