@@ -5,7 +5,6 @@ import 'package:mywiki/src/common/constant/app_string.dart';
 import 'package:mywiki/src/feature/search/bloc/search_bloc.dart';
 import 'package:mywiki/src/feature/search/repository/search_repository.dart';
 import 'package:mywiki/src/feature/search/view/search_page.dart';
-import 'package:mywiki/src/service/api/api_service.dart';
 
 class MyWikiApp extends StatelessWidget {
   const MyWikiApp({super.key});

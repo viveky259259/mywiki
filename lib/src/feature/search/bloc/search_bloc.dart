@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kiwi/kiwi.dart';
 import 'package:mywiki/src/feature/search/bloc/search_event.dart';
 import 'package:mywiki/src/feature/search/bloc/search_state.dart';
 import 'package:mywiki/src/feature/search/mapper/search_result_mapper.dart';

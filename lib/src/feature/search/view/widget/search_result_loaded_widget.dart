@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:mywiki/src/feature/search/model/search_result.dart';
 import 'package:mywiki/src/feature/search/view/widget/search_list_item.dart';
 import 'package:mywiki/src/feature/wiki_page/view/wiki_page.dart';

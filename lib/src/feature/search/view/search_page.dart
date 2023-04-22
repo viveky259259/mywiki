@@ -5,11 +5,8 @@ import 'package:mywiki/src/common/constant/app_string.dart';
 import 'package:mywiki/src/feature/search/bloc/search_bloc.dart';
 import 'package:mywiki/src/feature/search/bloc/search_event.dart';
 import 'package:mywiki/src/feature/search/bloc/search_state.dart';
-import 'package:mywiki/src/feature/search/model/search_result.dart';
-import 'package:mywiki/src/feature/search/view/widget/search_list_item.dart';
 import 'package:mywiki/src/feature/search/view/widget/search_result_loaded_widget.dart';
 import 'package:mywiki/src/feature/search/view/widget/search_text_field.dart';
-import 'package:mywiki/src/feature/wiki_page/view/wiki_page.dart';
 
 class SearchPage extends StatelessWidget {
   SearchPage({super.key});
