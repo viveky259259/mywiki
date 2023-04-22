@@ -1,3 +1,5 @@
+import 'package:equatable/equatable.dart';
+
 class SearchResultModels {
   final String searchText;
   final List<SearchResultModel> searchResults;
@@ -13,11 +15,14 @@ class SearchResultModel {
   SearchResultModel({this.title, this.pageId, this.thumbnail, this.terms});
 }
 
-class ThumbnailModel {
+class ThumbnailModel extends Equatable {
   final String? source;
   final int? width;
   final int? height;
-  ThumbnailModel({this.source, this.height, this.width});
+  const ThumbnailModel({this.source, this.height, this.width});
+
+  @override
+  List<Object?> get props => [source, width, height];
 }
 
 class TermsModel {
