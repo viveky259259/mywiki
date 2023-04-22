@@ -18,12 +18,16 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     _searchBloc = BlocProvider.of(context);
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.black87,
+        title: Text('My Wiki App'),
+      ),
       body: Column(
         children: [
           Container(
             width: double.infinity,
             height: 48,
+            margin: EdgeInsets.symmetric(vertical: 16),
             padding: EdgeInsets.all(16),
             child: SearchTextField((searchText) =>
                 _searchBloc.add(SearchUserInputEvent(searchText))),
@@ -39,19 +43,23 @@ class SearchPage extends StatelessWidget {
                     } else if (state is LoadingSearchResult) {
                       return CircularProgressIndicator();
                     } else if (state is LoadedSearchResult) {
-                      return ListView.builder(
-                        itemBuilder: (context, index) {
-                          SearchResultModel searchResultModel =
-                              state.results[index];
-                          return SearchListItem(
-                            searchResultModel,
-                            () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (_) => WikiPage(searchResultModel)));
-                            },
-                          );
-                        },
-                        itemCount: state.results.length,
+                      return Material(
+                        color: Colors.black,
+                        child: ListView.builder(
+                          itemBuilder: (context, index) {
+                            SearchResultModel searchResultModel =
+                                state.results[index];
+                            return SearchListItem(
+                              searchResultModel,
+                              () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) =>
+                                        WikiPage(searchResultModel)));
+                              },
+                            );
+                          },
+                          itemCount: state.results.length,
+                        ),
                       );
                     } else {
                       return Text('something went wrong');

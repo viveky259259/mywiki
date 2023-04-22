@@ -8,15 +8,25 @@ class SearchItemDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (termsModel != null ||
+    String? description = getDescription();
+    return description == null
+        ? const SizedBox()
+        : Text(
+            description,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(fontSize: 12, color: Colors.white54),
+          );
+  }
+
+  String? getDescription() {
+    if (termsModel == null ||
         termsModel!.description == null ||
         termsModel!.description!.isEmpty) {
-      return const SizedBox();
+      return null;
     }
 
-    return ListView.builder(
-      itemBuilder: ((context, index) => Text(termsModel!.description![index])),
-      itemCount: termsModel!.description?.length,
-    );
+    return termsModel!.description!
+        .reduce((value, element) => '$value, $element');
   }
 }

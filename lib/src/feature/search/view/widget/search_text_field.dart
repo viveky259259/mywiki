@@ -8,23 +8,25 @@ class SearchTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      crossAxisAlignment: CrossAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Expanded(
           child: TextField(
             controller: _searchTextController,
-            decoration: InputDecoration(hintText: 'Search here'),
+            cursorColor: Colors.black,
+            decoration: InputDecoration(
+                hintText: 'Search here', border: InputBorder.none),
           ),
         ),
         const SizedBox(
           width: 16,
         ),
-        IconButton(
-            onPressed: () {
+        GestureDetector(
+            onTap: () {
               onSearch(_searchTextController.text);
             },
-            icon: const Icon(Icons.search))
+            child: const Icon(Icons.search))
       ],
     );
   }

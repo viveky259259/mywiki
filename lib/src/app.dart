@@ -8,6 +8,7 @@ class MyWikiApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'My Wiki',
+    
       home: MultiBlocProvider(
         providers: [BlocProvider(create: (_) => SearchBloc())],
         child: SearchPage(),
