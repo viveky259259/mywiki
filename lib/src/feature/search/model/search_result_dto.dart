@@ -8,19 +8,19 @@ class SearchResultDto {
   SearchResultDto.fromJson(Map<String, dynamic> json) {
     batchcomplete = json['batchcomplete'];
     continuePage = json['continue'] != null
-        ? new ContinuePage.fromJson(json['continue'])
+        ? ContinuePage.fromJson(json['continue'])
         : null;
-    query = json['query'] != null ? new Query.fromJson(json['query']) : null;
+    query = json['query'] != null ? Query.fromJson(json['query']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['batchcomplete'] = this.batchcomplete;
-    if (this.continuePage != null) {
-      data['continue'] = this.continuePage!.toJson();
+    final Map<String, dynamic> data = {};
+    data['batchcomplete'] = batchcomplete;
+    if (continuePage != null) {
+      data['continue'] = continuePage!.toJson();
     }
-    if (this.query != null) {
-      data['query'] = this.query!.toJson();
+    if (query != null) {
+      data['query'] = query!.toJson();
     }
     return data;
   }
@@ -38,9 +38,9 @@ class ContinuePage {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['sroffset'] = this.sroffset;
-    data['continue'] = this.continueString;
+    final Map<String, dynamic> data = {};
+    data['sroffset'] = sroffset;
+    data['continue'] = continueString;
     return data;
   }
 }
@@ -53,23 +53,23 @@ class Query {
 
   Query.fromJson(Map<String, dynamic> json) {
     searchinfo = json['searchinfo'] != null
-        ? new Searchinfo.fromJson(json['searchinfo'])
+        ? Searchinfo.fromJson(json['searchinfo'])
         : null;
     if (json['pages'] != null) {
       searchResult = <SearchResult>[];
       json['pages'].forEach((v) {
-        searchResult!.add(new SearchResult.fromJson(v));
+        searchResult!.add(SearchResult.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.searchinfo != null) {
-      data['searchinfo'] = this.searchinfo!.toJson();
+    final Map<String, dynamic> data = {};
+    if (searchinfo != null) {
+      data['searchinfo'] = searchinfo!.toJson();
     }
-    if (this.searchResult != null) {
-      data['searchResult'] = this.searchResult!.map((v) => v.toJson()).toList();
+    if (searchResult != null) {
+      data['searchResult'] = searchResult!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -89,10 +89,10 @@ class Searchinfo {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['totalhits'] = this.totalhits;
-    data['suggestion'] = this.suggestion;
-    data['suggestionsnippet'] = this.suggestionsnippet;
+    final Map<String, dynamic> data = {};
+    data['totalhits'] = totalhits;
+    data['suggestion'] = suggestion;
+    data['suggestionsnippet'] = suggestionsnippet;
     return data;
   }
 }
@@ -113,17 +113,17 @@ class SearchResult {
     pageid = json['pageid'];
     timestamp = json['timestamp'];
     thumbnail = json['thumbnail'] != null
-        ? new Thumbnail.fromJson(json['thumbnail'])
+        ? Thumbnail.fromJson(json['thumbnail'])
         : null;
-    terms = json['terms'] != null ? new Terms.fromJson(json['terms']) : null;
+    terms = json['terms'] != null ? Terms.fromJson(json['terms']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['ns'] = this.ns;
-    data['title'] = this.title;
-    data['pageid'] = this.pageid;
-    data['timestamp'] = this.timestamp;
+    final Map<String, dynamic> data = {};
+    data['ns'] = ns;
+    data['title'] = title;
+    data['pageid'] = pageid;
+    data['timestamp'] = timestamp;
     return data;
   }
 }
@@ -142,10 +142,10 @@ class Thumbnail {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['source'] = this.source;
-    data['width'] = this.width;
-    data['height'] = this.height;
+    final Map<String, dynamic> data = {};
+    data['source'] = source;
+    data['width'] = width;
+    data['height'] = height;
     return data;
   }
 }
@@ -160,8 +160,8 @@ class Terms {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['description'] = this.description;
+    final Map<String, dynamic> data = {};
+    data['description'] = description;
     return data;
   }
 }

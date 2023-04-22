@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mywiki/src/common/constant/color.dart';
+import 'package:mywiki/src/common/constant/app_color.dart';
 import 'package:mywiki/src/feature/search/model/search_result.dart';
 import 'package:mywiki/src/feature/search/view/widget/search_item_description.dart';
 
@@ -23,14 +23,14 @@ class SearchListItem extends StatelessWidget {
     }
     return Card(
       color: AppColor.searchItemBg,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(16))),
-      margin: EdgeInsets.all(16),
+      margin: const EdgeInsets.all(16),
       child: InkWell(
-        borderRadius: BorderRadius.all(Radius.circular(16)),
+        borderRadius: const BorderRadius.all(Radius.circular(16)),
         onTap: () => onTap(),
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -39,8 +39,8 @@ class SearchListItem extends StatelessWidget {
                 AppColor.searchItemContentBg
               ])),
           height: 148,
-          margin: EdgeInsets.all(16),
-          padding: EdgeInsets.only(left: 16),
+          margin: const EdgeInsets.all(16),
+          padding: const EdgeInsets.only(left: 16),
           child: Row(
             children: [
               Expanded(
@@ -51,7 +51,7 @@ class SearchListItem extends StatelessWidget {
                     Text(searchListItem.title ?? '',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.white,
                             fontSize: 16,
                             fontWeight: FontWeight.w500)),

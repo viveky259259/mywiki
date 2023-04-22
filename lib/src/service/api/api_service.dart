@@ -7,11 +7,13 @@ import 'package:mywiki/src/service/api/api_constants.dart';
 class ApiService {
   Future<SearchResultDto?> getSearchResult(String searchText) async {
     SearchResultDto? searchResult;
-    String url = ApiConstant.baseSearchUrl + searchText+ApiConstant.endSearchUrl;
+    String url =
+        ApiConstant.baseSearchUrl + searchText + ApiConstant.endSearchUrl;
     Uri searchUri = Uri.parse(url);
     dynamic result = await http.get(searchUri);
-    if (result.body != null)
+    if (result.body != null) {
       searchResult = SearchResultDto.fromJson(json.decode(result.body));
+    }
     return searchResult;
   }
 }

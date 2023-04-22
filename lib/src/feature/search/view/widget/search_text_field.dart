@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mywiki/src/common/constant/app_string.dart';
 
 class SearchTextField extends StatelessWidget {
   SearchTextField(this.onSearch, {super.key});
@@ -15,8 +16,8 @@ class SearchTextField extends StatelessWidget {
           child: TextField(
             controller: _searchTextController,
             cursorColor: Colors.red,
-            decoration: InputDecoration(
-                hintText: 'Search here',
+            decoration: const InputDecoration(
+                hintText: AppString.searchHintText,
                 hintStyle: TextStyle(color: Colors.black38),
                 border: InputBorder.none),
           ),

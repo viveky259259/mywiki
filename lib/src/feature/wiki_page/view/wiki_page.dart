@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/basic.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:mywiki/src/feature/search/model/search_result.dart';
 import 'package:mywiki/src/service/api/api_constants.dart';
 import 'package:webview_flutter/webview_flutter.dart';
