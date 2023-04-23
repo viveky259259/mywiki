@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mywiki/src/common/constant/app_color.dart';
 import 'package:mywiki/src/feature/search/model/search_result.dart';
-import 'package:mywiki/src/feature/search/view/widget/search_item_description.dart';
+import 'package:mywiki/src/feature/search/view/widget/search_item_description_widget.dart';
 
 class SearchListItem extends StatelessWidget {
   const SearchListItem(this.searchListItem, this.onTap, {super.key});

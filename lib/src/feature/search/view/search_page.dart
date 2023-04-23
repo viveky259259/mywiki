@@ -5,16 +5,30 @@ import 'package:mywiki/src/common/constant/app_string.dart';
 import 'package:mywiki/src/feature/search/bloc/search_bloc.dart';
 import 'package:mywiki/src/feature/search/bloc/search_event.dart';
 import 'package:mywiki/src/feature/search/bloc/search_state.dart';
+import 'package:mywiki/src/feature/search/view/widget/cached_result_loaded_widget.dart';
 import 'package:mywiki/src/feature/search/view/widget/search_result_loaded_widget.dart';
-import 'package:mywiki/src/feature/search/view/widget/search_text_field.dart';
+import 'package:mywiki/src/feature/search/view/widget/search_text_field_widget.dart';
 
-class SearchPage extends StatelessWidget {
-  SearchPage({super.key});
+class SearchPage extends StatefulWidget {
+  const SearchPage({super.key});
+
+  @override
+  State<SearchPage> createState() => _SearchPageState();
+}
+
+class _SearchPageState extends State<SearchPage> {
   late SearchBloc _searchBloc;
+
   final searchTextController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _searchBloc = BlocProvider.of(context)..add(InitialSearchPageLoadEvent());
+  }
+
   @override
   Widget build(BuildContext context) {
-    _searchBloc = BlocProvider.of(context)..add(InitialSearchPageLoadEvent());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black87,
@@ -45,11 +59,8 @@ class SearchPage extends StatelessWidget {
                   builder: (context, state) {
                     if (state is InitialState) {
                       return const Text(AppString.searchAboveText);
-                    } else if (state is LoadingCachedResult) {
-                      return const CircularProgressIndicator(
-                        color: Colors.red,
-                      );
-                    } else if (state is LoadingSearchResult) {
+                    } else if (state is LoadingCachedResult ||
+                        state is LoadingSearchResult) {
                       return const CircularProgressIndicator(
                         color: Colors.red,
                       );
@@ -61,52 +72,22 @@ class SearchPage extends StatelessWidget {
                       if (state.results.isEmpty) {
                         return const Text(AppString.welcomeText);
                       }
-                      return Material(
-                        color: Colors.black,
-                        child: Column(
-                          children: [
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            const Text(
-                              AppString.previousSearchText,
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 16),
-                            ),
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            Expanded(
-                              child: ListView.separated(
-                                  separatorBuilder: (context, index) =>
-                                      const Divider(
-                                        color: Colors.white54,
-                                      ),
-                                  itemBuilder: (context, index) => ListTile(
-                                        onTap: () {
-                                          _searchBloc.add(
-                                              LoadPreviousSearchResult(
-                                                  state.results[index]));
-                                        },
-                                        textColor: Colors.white,
-                                        title: Text(
-                                            state.results[index].searchText),
-                                        subtitle: Text(
-                                            '${state.results[index].searchResults.length} results'),
-                                      ),
-                                  itemCount: state.results.length),
-                            )
-                          ],
-                        ),
-                      );
+                      return CachedResultLoadedWidget(
+                          state.results,
+                          (selectedItem) => _searchBloc
+                              .add(LoadPreviousSearchResult(selectedItem)));
                     } else if (state is LoadedPreviousSearchResult) {
+                      // prevent ui changes while build is going on
                       SchedulerBinding.instance.addPostFrameCallback((_) =>
                           searchTextController.text =
                               state.searchResults.searchText);
                       return SearchResultLoaded(
                           state.searchResults.searchResults);
                     } else {
-                      return const Text(AppString.searchResultError);
+                      return const Text(
+                        AppString.searchResultError,
+                        textAlign: TextAlign.center,
+                      );
                     }
                   }))
         ],

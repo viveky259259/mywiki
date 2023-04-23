@@ -24,19 +24,23 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     }
     emit(LoadingSearchResult());
 
-    SearchResultDto? searchResponse =
-        await searchRepository.getSearchResults(event.searchInput);
-    if (searchResponse != null) {
-      List<SearchResultModel>? results =
-          SearchResultMapper.getSearchResultModelsFromSearchResultDto(
-              searchResponse);
-      if (results != null) {
-        searchRepository.saveSearchResultCollection(
-            SearchResultMapper.getSearchResultCollectionFromSearchResults(
-                event.searchInput, results));
-        emit(LoadedSearchResult(results));
+    try {
+      SearchResultDto? searchResponse =
+          await searchRepository.getSearchResults(event.searchInput);
+      if (searchResponse != null) {
+        List<SearchResultModel>? results =
+            SearchResultMapper.getSearchResultModelsFromSearchResultDto(
+                searchResponse);
+        if (results != null) {
+          searchRepository.saveSearchResultCollection(
+              SearchResultMapper.getSearchResultCollectionFromSearchResults(
+                  event.searchInput, results));
+          emit(LoadedSearchResult(results));
+        }
+      } else {
+        emit(ErrorLoadingSearchResult());
       }
-    } else {
+    } catch (e) {
       emit(ErrorLoadingSearchResult());
     }
   }

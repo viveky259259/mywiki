@@ -19,7 +19,7 @@ class MyWikiApp extends StatelessWidget {
               create: (_) =>
                   SearchBloc(KiwiContainer().resolve<SearchRepository>()))
         ],
-        child: SearchPage(),
+        child: const SearchPage(),
       ),
     );
   }

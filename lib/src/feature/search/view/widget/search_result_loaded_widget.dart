@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mywiki/src/feature/search/model/search_result.dart';
-import 'package:mywiki/src/feature/search/view/widget/search_list_item.dart';
+import 'package:mywiki/src/feature/search/view/widget/search_list_item_widget.dart';
 import 'package:mywiki/src/feature/wiki_page/view/wiki_page.dart';
 
 class SearchResultLoaded extends StatelessWidget {

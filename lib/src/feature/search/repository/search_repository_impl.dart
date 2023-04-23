@@ -2,7 +2,7 @@ import 'package:mywiki/src/feature/search/model/search_item_db_helper.dart';
 import 'package:mywiki/src/feature/search/model/search_result_collection_item.dart';
 import 'package:mywiki/src/feature/search/model/search_result_dto.dart';
 import 'package:mywiki/src/feature/search/repository/search_repository.dart';
-import 'package:mywiki/src/service/api/api_service.dart';
+import 'package:mywiki/src/service/api/api_service_impl.dart';
 import 'package:mywiki/src/service/db/app_db.dart';
 
 class SearchRepositoryImpl implements SearchRepository {
