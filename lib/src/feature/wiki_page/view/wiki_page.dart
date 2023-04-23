@@ -15,9 +15,17 @@ class WikiPage extends StatefulWidget {
 class _WikiPageState extends State<WikiPage> {
   late WebViewController controller;
   int loadingProgress = 0;
+  bool canLoadWeb = false;
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback(
+        (_) => Future.delayed(const Duration(milliseconds: 300), () {
+              initiateController();
+            }));
+  }
+
+  void initiateController() {
     controller = WebViewController()
       ..setNavigationDelegate(NavigationDelegate(
         onProgress: (progress) => setState(() {
@@ -31,6 +39,10 @@ class _WikiPageState extends State<WikiPage> {
         }),
       ))
       ..loadRequest(Uri.parse(getUrl()));
+
+    setState(() {
+      canLoadWeb = true;
+    });
   }
 
   String getUrl() {
@@ -40,16 +52,16 @@ class _WikiPageState extends State<WikiPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: Text(widget.searchResultModel.title ?? ''),
       ),
       body: Stack(
         children: [
-          WebViewWidget(
-            controller: controller,
-          ),
+          if (canLoadWeb)
+            WebViewWidget(
+              controller: controller,
+            ),
           if (loadingProgress < 100)
             const Center(
                 child: CircularProgressIndicator(
